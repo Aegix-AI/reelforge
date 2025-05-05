@@ -1,9 +1,9 @@
 ######################################
 # TODOS:
 
-#* 1. Check the algorithms of FFMPEG to create video
+[ ] #* 1. Check the algorithms of FFMPEG to create video
 
-#* 2. Check the seemless integration of FFMPEG and APIs
+[ ] #* 2. Check the seemless integration of FFMPEG and APIs
 ######################################
 
 import os

@@ -1,13 +1,13 @@
 ######################################
 # TODOS:
 
-#* 1. Create the Image function
+[ ] #* 1. Create the Image function
 
-#* 2. Create the Text function
+[ ] #* 2. Create the Text function
 
-#* 3. Create the Music function
+[ ] #* 3. Create the Music function
 
-#* 4. Test it before deploying
+[ ] #* 4. Test it before deploying
 ######################################
 
 from fastapi import FastAPI, UploadFile
