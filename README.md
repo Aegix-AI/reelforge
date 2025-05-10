@@ -40,7 +40,7 @@ ReelForge is an AI-powered platform that automatically generates engaging short-
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/reelforge.git
+   https://github.com/Aegix-AI/reelforge.git
    cd reelforge
    ```
 
