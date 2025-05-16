@@ -1,13 +1,22 @@
 ######################################
-# TODOS:
+# TODO:
 
-[x] #* 1. Create the Image function
+# [x] #* 1. Check the API integration part.
 
-[x] #* 2. Create the Text function
+# [x] #* 2. Check the call function for seamless integration.
 
-[x] #* 3. Create the Music function
+# [ ] #* 3. Check parse input function and make sure it parses the task correctly.
 
-[x] #* 4. Test it before deploying
+# [ ] #* 4. Check up the analyze task part, make sure it returns the correct components and truly understands the tasks. Make sure the model is correctly set up and the prompt is correct.
+
+# [ ] #* 5. Check the Video and Audio generation part, make sure it generates the correct video and audio files. Make sure the model is correctly set up and the prompt is correct and correctly utilizes the right API key to generate exactly what the prompt is asking for and saves it in the right format in the right place.
+
+# [ ] #* 6. Check up the music function, make sure the library is correctly set up and the function would correctly pick up the right music for the task and saves it in the right format in the right place.
+
+# [ ] #* 7. Check up the text/subtitle generation part and make sure it generates the right exact subtitles for the video and audio files and saves it in the right format in the right place.
+
+# [ ] #* 8. Make sure the files folder are neat, ready to be carried into the blender.py.
+
 ######################################
 
 from fastapi import FastAPI, UploadFile, HTTPException
@@ -44,6 +53,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 # API Handler: Calls the API with specific model and prompt
 def call_api(model: str, prompt: str, **kwargs):
     if not API_KEY:
@@ -57,7 +67,6 @@ def call_api(model: str, prompt: str, **kwargs):
     }
     
     logger.info(f"Calling API with model: {model}")
-    
     if model == "gpt-4o-mini":
         try:
             text_response = requests.post(TEXT_URL, headers=headers, json=payload)
@@ -74,6 +83,11 @@ def call_api(model: str, prompt: str, **kwargs):
         except requests.RequestException as e:
             logger.error(f"API call failed: {str(e)}")
             raise HTTPException(status_code=500, detail=f"API call failed: {str(e)}")
+    
+
+#* ############################################################################################
+#* ###################################### || CHECKED || #######################################
+#* ############################################################################################
     
 
 # Input Parser: Processes the input data and saves uploaded files

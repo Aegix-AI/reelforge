@@ -1,9 +1,9 @@
 ######################################
 # TODOS:
 
-[x] #* 1. Check the seemless integrations.
+# [x] #* 1. Check the seemless integrations.
 
-[x] #* 2. Recheck the inputs sending from the front-end to the back-end system and fine-tune the functions by them.
+# [x] #* 2. Recheck the inputs sending from the front-end to the back-end system and fine-tune the functions by them.
 ######################################
 
 #? PIAPI Main Page: https://piapi.ai/workspace
