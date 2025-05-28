@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/icon.png" alt="reelforge logo" width="200">
+  <img src="assets/icon_and_name.png" alt="reelforge logo" width="200">
 </p>
 
 ![ChatGPT](https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
