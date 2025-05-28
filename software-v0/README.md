@@ -48,7 +48,7 @@ ReelForge is an AI-powered platform that automatically generates engaging short-
    ```bash
    # Create .env file in the back-end directory
    cd back-end
-   cp .env.example .env
+   cp .env.example .env  # Ensure .env.example exists in the repository
    # Edit .env and add your PIAPI API key
    ```
 
