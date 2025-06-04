@@ -19,8 +19,18 @@ from fastapi import UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from components import ( parse_input, analyze_task, generate_video, generate_audio, generate_music, generate_text, app )
+from components import (
+    parse_input,
+    analyze_task,
+    generate_video,
+    generate_audio,
+    generate_music,
+    generate_text,
+    app,
+)
 from blender import blend_components, check_ffmpeg_installation
+from tasks import celery_app, create_short_video
+from celery.result import AsyncResult
 
 # Create static directory for videos
 os.makedirs("static/videos", exist_ok=True)
@@ -134,6 +144,36 @@ async def generate_short(
     finally:
         # Clean up temporary directory
         shutil.rmtree(temp_dir, ignore_errors=True)
+
+
+@app.post("/generate_short_async")
+async def generate_short_async(
+    description: str = Form(...),
+    voice: str = Form(...),
+    music_tune: str = Form(...),
+    logo: UploadFile = File(None),
+):
+    files = [logo] if logo and logo.filename else []
+    input_data = parse_input(description, voice, music_tune, files)
+    task = create_short_video.delay(
+        description,
+        voice,
+        music_tune,
+        input_data["uploaded_files"],
+        input_data["temp_dir"],
+    )
+    return {"task_id": task.id}
+
+
+@app.get("/tasks/{task_id}")
+async def get_task_status(task_id: str):
+    result = AsyncResult(task_id, app=celery_app)
+    if result.successful():
+        return {
+            "status": "completed",
+            "video": f"/static/videos/{result.result}",
+        }
+    return {"status": result.state.lower()}
 
 @app.get("/static/videos/{video_name}")
 async def get_video(video_name: str):
